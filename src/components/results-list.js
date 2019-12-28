@@ -7,7 +7,7 @@ export const ResultsListView = props => (
     <FlatList
       data={props.results}
       renderItem={({item}) =>
-        console.log('item: ', item) || (
+        console.log('item===: ') || (
           <ResultItem details={item} onResultPress={props.onResultPress} />
         )
       }

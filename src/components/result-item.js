@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 export const ResultItem = ({details, onResultPress}) =>
-  console.log('Details: ', details) || (
+  console.log('Details====: ') || (
     <View style={styles.item}>
       <Text style={styles.name}>{details.name}</Text>
       <Button title="See Details" onPress={() => onResultPress(details)} />

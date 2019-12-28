@@ -1,15 +1,6 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Button,
-  StatusBar,
-} from 'react-native';
 
 import {SearchScreen} from './src/screens/SearchScreen';
 import {ResultsScreen} from './src/screens/ResultsScreen';
@@ -30,11 +21,5 @@ const App: () => React$Node = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'white',
-  },
-});
 
 export default App;
