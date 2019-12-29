@@ -8,14 +8,19 @@ const urlParser = url => {
   return {category: slugs[0], id: slugs[1]};
 };
 
-const urlBuilder = urls => {
-  return `${BASE_URL}${urls[0].category}/?ids=${urls
+const bulkUrlBuilder = urls => {
+  const {category} = urlParser(urls[0]);
+  console.log('url[0]', urls[0]);
+  console.log('category: ', category);
+  const retval = `${BASE_URL}${category}/?ids=${urls
     .map(url => url.id)
     .join(',')}`;
+  console.log('retval: ', retval);
+  return retval;
 };
 
-const searchUrlBuilder = query => {
-
+const searchUrlBuilder = (query, category) => {
+  return `${BASE_URL}${category}/?search=${query}`;
 };
 
-module.exports = {urlParser, urlBuilder};
+module.exports = {urlParser, bulkUrlBuilder, searchUrlBuilder};

@@ -1,27 +1,24 @@
 import React from 'react';
-
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Button,
-  StatusBar,
-} from 'react-native';
-import {ResultsListView} from '../components/results-list';
+import {View, Text} from 'react-native';
 import {RequestList} from '../components/request-list';
+import {ResultItem} from '../components/result-item';
 
 export const ResultsScreen = props => {
-  // const results = props.navigation.getParam('results', []);
-  // const onResultPress = props.navigation.getParam('onResultPress', null);
-  const navigationOptions = {
-    title: 'Results',
+  const url = props.navigation.getParam('url');
+
+  const onItemVisit = item => {
+    const {navigate} = props.navigation;
+    navigate('Details', {item: item});
+  };
+
+  const renderItem = item => {
+    return <ResultItem item={item} onItemVisit={onItemVisit} />;
   };
 
   return (
-    <SafeAreaView>
-      <Text>Check it out, some results:</Text>
-    </SafeAreaView>
+    <View>
+      <Text>Results:</Text>
+      <RequestList renderItem={renderItem} url={url} {...props} />
+    </View>
   );
 };

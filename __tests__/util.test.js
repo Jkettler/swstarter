@@ -1,7 +1,7 @@
 import {BASE_URL} from '../src/constants';
 
 const helpers = require('../src/util/helpers');
-const {urlParser, urlBuilder} = helpers;
+const {urlParser, bulkUrlBuilder, searchUrlBuilder} = helpers;
 
 const filmInstance = `${BASE_URL}films/5/`;
 const filmInstanceTwo = `${BASE_URL}films/2/`;
@@ -15,5 +15,9 @@ test('parses category and id from url', () => {
 test('builds bulk url from Array of parsed vals', () => {
   const urls = [urlParser(filmInstance), urlParser(filmInstanceTwo)];
 
-  expect(urlBuilder(urls)).toBe(`${BASE_URL}films/?ids=5,2`);
+  expect(bulkUrlBuilder(urls)).toBe(`${BASE_URL}films/?ids=5,2`);
+});
+
+test('builds search url for api', () => {
+  expect(searchUrlBuilder('r2', 'people')).toBe(`${BASE_URL}people/?search=r2`);
 });

@@ -1,4 +1,4 @@
-## Notes/Issues
+## Notes
 
 ### Project setup
 - previous experience: expo, this time: React-Native CLI
@@ -8,18 +8,17 @@
 ### Structure
 - navigation/screens: Search, Results, Details, back-to-search button, inner-app "link" to Details page
     - https://github.com/wix/react-native-navigation looks cool, but project req is `react-navigation`
-        - given mocks are for iphone, prob just use/test iphone emulator for quick v1 sample project 
+        - given mocks are for iphone, prob just use/test iOS emulator for quick v1 sample project 
     - Prob go with stack navigator bc seems like logical choice for this flow
     - https://reactnavigation.org/docs/en/navigating-without-navigation-prop.html (maybe do this to avoid needing `navigation` passed down?)
         - or https://reactnavigation.org/docs/en/connecting-navigation-prop.html
-        - stacknav#reset - wipe the navigator state and replace it with the result of several actions
-        - stacknav#dismiss - dismiss the current stack
+        
 
 - Interactions: search field, submit button, inner-app link that (maybe) requires fetch, back to search 
     - back-to-search: reset app state or just clear nav stack?
         - Components:
-            - Top header bar, every page, always goes 'back' except on search
-            - stylized HOC scrollview with flexbox layout, consistent alignment, margin/padding
+            - ~~Top header bar, every page, always goes 'back' except on search~~ `defaultNavigationOptions` options/styles
+            - stylized scrollview with flexbox layout, consistent alignment, margin/padding
             - button: reuse single style, takes props text, onClick
             - result display, props = entity name, button text, onClick (avoid deep nesting/deep prop passing? code smell?)
             - maybe reusable component like: DisplayText, Grey separator line, list of components to render below
@@ -55,3 +54,6 @@
     I'd want to spend more time getting this to work, but in the spirit of the time limit, I'm just commenting it out now.
   
     
+### iOs/Android
+- https://facebook.github.io/react-native/docs/button#color ```color: Color of the text (iOS), or background color of the button (Android)```
+     - This makes me sad

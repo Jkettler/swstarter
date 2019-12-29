@@ -9,21 +9,19 @@ import {
   StatusBar,
 } from 'react-native';
 
-export const ResultItem = ({details, onResultPress}) =>
-  console.log('Details====: ') || (
+export const ResultItem = ({item, onItemVisit}) => {
+  return (
     <View style={styles.item}>
-      <Text style={styles.name}>{details.name}</Text>
-      <Button title="See Details" onPress={() => onResultPress(details)} />
+      <Text style={styles.name}>{item.name}</Text>
+      <Button title="See Details" onPress={() => onItemVisit(item)} />
     </View>
   );
+};
 
 const styles = StyleSheet.create({
-  item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
+  item: {},
   name: {
     fontSize: 32,
+    color: 'black',
   },
 });
