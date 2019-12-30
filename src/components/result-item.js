@@ -8,20 +8,18 @@ import {
   Button,
   StatusBar,
 } from 'react-native';
+import {SwsButton} from './sws-button';
 
 export const ResultItem = ({item, onItemVisit}) => {
   return (
     <View style={styles.item}>
       <Text style={styles.name}>{item.name}</Text>
-      <Button title="See Details" onPress={() => onItemVisit(item)} />
+      <SwsButton title="SEE DETAILS" onPress={() => onItemVisit(item)} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   item: {},
-  name: {
-    fontSize: 32,
-    color: 'black',
-  },
+  name: {},
 });

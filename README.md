@@ -29,7 +29,7 @@
 - https://blog.logrocket.com/axios-or-fetch-api/ (stop the "dev clock" to read this)
 - want to avoid N+1 queries on details page to get person's movie titles or films' character names(API only provides urls)
     - could get all films/actors and filter in memory (might be worse performance if # pages > # references (esp if pages are slower)
-    - yay, undocumented bulk fetch by id e.g. `/films/?ids=1,2,3` solves this problem
+    - ~~yay, undocumented bulk fetch by id e.g. `/films/?ids=1,2,3` solves this problem~~ Doesn't work (returns results, but not accurate), will have to hit search again
         - workflow: click details link -> fetch instance -> .then(parse out ids and do 2nd query)
         
         

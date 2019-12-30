@@ -1,5 +1,6 @@
 export const BASE_URL = 'https://swapi.co/api/';
-export const SWSTARTER_GREEN = 'rgb(10,180,99)';
+export const SWS_GREEN = 'rgb(10,180,99)';
+export const API_NUM_RESULTS = 10;
 export const SEARCH_OPTIONS = [
   {
     idx: 0,
@@ -14,4 +15,3 @@ export const SEARCH_OPTIONS = [
     placeholder: 'e.g. Empire, Holiday Special',
   },
 ];
-

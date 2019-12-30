@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {Button, View, Text, StyleSheet} from 'react-native';
-
-import {RequestList} from '../components/request-list';
-import {bulkUrlBuilder} from '../util/helpers';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
+import {orderedObjectList} from '../util/helpers';
+import {fetchManyInstances} from '../util/fetchers';
+import {ObjectTextWrap} from '../components/object-text-wrap';
+import {MockLink} from '../components/mock-link';
 
 export const DetailsScreen = props => {
   const item = props.navigation.getParam('item');
+  const {name, title, films, characters, opening_crawl} = item;
 
-  const {name, films, title, opening_crawl, characters} = item;
+  const [references, setReferences] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const orderedFilter = [
     'birth_year',
@@ -18,64 +21,47 @@ export const DetailsScreen = props => {
     'mass',
   ];
 
-  // orderedFilter acts as both a filter and a sorting scheme
-  //
-  const orderedObjectList = obj => {
-    let result = [];
-    for (let [k, v] of Object.entries(obj)) {
-      const pos = orderedFilter.indexOf(k);
-      if (pos >= 0) {
-        const lhs = k
-          .split('_')
-          .map(word => word[0].toUpperCase() + word.slice(1))
-          .join(' ');
-
-        result[pos] = (
-          <Text key={k}>
-            {lhs}: {v}
-          </Text>
-        );
-      }
-    }
-
-    return result;
-  };
-
-  const onItemVisit = (e, itemAttrs) => {
-    console.log('itemAttrs: ', itemAttrs);
+  const onPress = (e, itemAttrs) => {
     const {navigate} = props.navigation;
+    setIsLoading(true);
+    setReferences([]);
     navigate('Details', {item: itemAttrs});
   };
 
   const renderItem = itemAttrs => {
-    return (
-      <View>
-        <Button
-          title={itemAttrs.name || itemAttrs.title}
-          onPress={e => onItemVisit(e, itemAttrs)}
-        />
-      </View>
-    );
+    return <MockLink key={itemAttrs.url} onPress={onPress} item={itemAttrs} />;
   };
+
+  useEffect(() => {
+    const refUrls = films || characters;
+
+    fetchManyInstances(refUrls).then(results => {
+      setIsLoading(false);
+      setReferences(results);
+    });
+  }, [films, characters]);
 
   const header = name || title;
   const blockOneHeader = name ? 'Details' : 'Opening Crawl';
   const blockOne = name ? (
-    orderedObjectList(item)
+    <ObjectTextWrap list={orderedObjectList(item, orderedFilter)} />
   ) : (
     <Text>{opening_crawl}</Text>
   );
   const blockTwoHeader = name ? 'Movies' : 'Characters';
-  const bulkUrl = name ? bulkUrlBuilder(films) : bulkUrlBuilder(characters);
-  const blockTwo = <RequestList url={bulkUrl} renderItem={renderItem} />;
 
   return (
     <View>
       <Text style={styles.header}>{header}</Text>
       <Text>{blockOneHeader}</Text>
-      <View style={styles.block}>{blockOne}</View>
-      <Text>{blockTwoHeader}</Text>
-      {blockTwo}
+      {blockOne}
+      <Text style={styles.header}>{blockTwoHeader}</Text>
+      {isLoading && (
+        <View style={styles.loading}>
+          <ActivityIndicator />
+        </View>
+      )}
+      {!isLoading && references.map(ref => renderItem(ref))}
     </View>
   );
 };

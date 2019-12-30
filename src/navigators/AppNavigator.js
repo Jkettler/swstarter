@@ -2,7 +2,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {SearchScreen} from '../screens/SearchScreen';
 import {ResultsScreen} from '../screens/ResultsScreen';
 import {DetailsScreen} from '../screens/DetailsScreen';
-import {SWSTARTER_GREEN} from '../constants';
+import {SWS_GREEN} from '../constants';
 
 export const AppNavigator = createStackNavigator(
   {
@@ -14,21 +14,17 @@ export const AppNavigator = createStackNavigator(
     initialRouteName: 'Search',
     defaultNavigationOptions: {
       title: 'SWStarter',
+      headerLeftContainerStyle: {
+        marginLeft: 30,
+      },
       headerBackTitle: null,
       headerStyle: {
         backgroundColor: '#fff',
-        borderBottomColor: SWSTARTER_GREEN,
+        borderBottomColor: SWS_GREEN,
+        borderBottomWidth: 1,
         fontFamily: 'Poppins-bold',
       },
-      headerTintColor: SWSTARTER_GREEN,
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      cardStyle: {
-        flex: 1,
-        margin: 10,
-        justifyContent: 'space-between',
-      },
+      headerTintColor: SWS_GREEN,
     },
   },
 );

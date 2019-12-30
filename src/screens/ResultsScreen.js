@@ -1,10 +1,13 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import {RequestList} from '../components/request-list';
 import {ResultItem} from '../components/result-item';
+import {fetchOne} from '../util/fetchers';
 
 export const ResultsScreen = props => {
   const url = props.navigation.getParam('url');
+  const [isLoading, setIsLoading] = useState(true);
+  const [result, setResult] = useState({});
 
   const onItemVisit = item => {
     const {navigate} = props.navigation;
@@ -15,10 +18,31 @@ export const ResultsScreen = props => {
     return <ResultItem item={item} onItemVisit={onItemVisit} />;
   };
 
+  useEffect(() => {
+    fetchOne(url).then(results => {
+      setIsLoading(false);
+      setResult(results);
+    });
+  }, [url]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
   return (
-    <View>
+    <View style={styles.results}>
       <Text>Results:</Text>
-      <RequestList renderItem={renderItem} url={url} {...props} />
+      <RequestList renderItem={renderItem} data={result.results} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  results: {
+    marginLeft: 30,
+    marginRight: 30,
+  },
+});
