@@ -15,7 +15,11 @@ They're very train-of-thought and shouldn't be scrutinized too seriously. They c
 ## Screenshots
 
 ![Screen Shot 2019-12-31 at 12 35 14 PM](https://user-images.githubusercontent.com/798914/71630715-345b2c80-2bca-11ea-9b2a-912168835dc0.png)
+
 ![Screen Shot 2019-12-31 at 12 35 31 PM](https://user-images.githubusercontent.com/798914/71630722-3b823a80-2bca-11ea-8662-5b7b44053ac1.png)
+
 ![Screen Shot 2019-12-31 at 12 35 49 PM](https://user-images.githubusercontent.com/798914/71630724-3e7d2b00-2bca-11ea-9562-059ef56f9f48.png)
+
 ![Screen Shot 2019-12-31 at 12 36 03 PM](https://user-images.githubusercontent.com/798914/71630728-450ba280-2bca-11ea-861e-0bda15484694.png)
+
 ![Screen Shot 2019-12-31 at 12 36 20 PM](https://user-images.githubusercontent.com/798914/71630731-489f2980-2bca-11ea-9c71-e048f7c6ff22.png)
