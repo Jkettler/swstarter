@@ -1,4 +1,23 @@
+## Readme
+
+I don't think there's any extra build instructions besides `git clone`, `npm install`, and `npm run ios` but I haven't built/run this on any machine but my own. I'm using node version `v12.14.0` as `default`, which is important because Metro Bundler launches a new terminal, using the default.
+As far as I know, this only runs in an ios simulator, and I haven't even experimented with the Android side of things. 
+
+I thought the time frame of 6 hours was a bit steep for a functionally complete, styled app, so I tried to front-load the work with some notes/thoughts to get the planning work done before the "dev" clock started. They're very train-of-thought and shouldn't be scrutinized too seriously. 
+ 
+ 
 ## Notes
+
+Overall, I had a blast writing this. I'm sure there's some things that might jump out to a team of engineers that do this stuff all the time, but I tried to make the components and everything  as clean and logical as I could without over-thinking and over-engineering. There are a few examples of things that I probably _shouldn't_ have spent time on, but I really wanted to get as close as I could to the mock screens.
+ 
+ Some things I would think more about if I had more time:
+ 
+ - The CSS is duplicated in a lot of places, and doesn't really follow a cascading pattern 
+ - The files themselves could be organized better. 
+ - I hate writing hard-coded anything, so I try to avoid it even when most people would agree it's a premature optimization. (See `orderedObjectList` in `util/helpers` for a prime example.
+ - There's no batch `GET` option through the API so I was forced to choose between N+1 queries on the Details page to get names/titles, or grabbing all the pages and filtering in memory. I went with the former because the implementation was faster/easier, but in a perfect world, the API would support something like `/films/?ids=1,2,3`. This really bothered me a lot.  It would be pretty fun to write something that chose the best strategy based on the number of expected pages would be fun to write, but out of scope for this. 
+ - Test coverage is _weak_. I normally push for lots of test, but again, kind of out of time. I wrote basic tests for non-react utility functions because I already knew how to write those tests and they're pretty important to things working correctly.
+
 
 ### Project setup
 - previous experience: expo, this time: React-Native CLI
