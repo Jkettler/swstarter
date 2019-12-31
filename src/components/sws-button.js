@@ -1,11 +1,21 @@
 import React from 'react';
-import {Button, StyleSheet, TouchableOpacity, Text} from 'react-native';
-import {SWS_GREEN} from '../constants';
+import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import {SWS_GREEN, DISABLED_GREY} from '../constants';
 
 export const SwsButton = props => {
+  const {onPress, title, disabled = false} = props;
+
+  const disabledStyles = {
+    backgroundColor: DISABLED_GREY,
+    borderColor: DISABLED_GREY,
+  };
+
   return (
-    <TouchableOpacity style={styles.button} onPress={props.onPress}>
-      <Text style={styles.text}>{props.title}</Text>
+    <TouchableOpacity
+      disabled={disabled}
+      style={disabled ? [styles.button, disabledStyles] : styles.button}
+      onPress={onPress}>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -14,11 +24,13 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: SWS_GREEN,
     borderColor: SWS_GREEN,
+    height: 35,
     borderWidth: 2,
     borderRadius: 25,
     alignItems: 'center',
-    paddingTop: 10,
-    paddingBottom: 10
+    justifyContent: 'center',
+    // marginTop: 15,
+    marginBottom: 15,
   },
   text: {
     color: 'white',

@@ -20,7 +20,6 @@
             - ~~Top header bar, every page, always goes 'back' except on search~~ `defaultNavigationOptions` options/styles
             - stylized scrollview with flexbox layout, consistent alignment, margin/padding
             - button: reuse single style, takes props text, onClick
-            - result display, props = entity name, button text, onClick (avoid deep nesting/deep prop passing? code smell?)
             - maybe reusable component like: DisplayText, Grey separator line, list of components to render below
             
 
@@ -57,3 +56,5 @@
 ### iOs/Android
 - https://facebook.github.io/react-native/docs/button#color ```color: Color of the text (iOS), or background color of the button (Android)```
      - This makes me sad
+     
+

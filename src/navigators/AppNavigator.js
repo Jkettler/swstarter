@@ -23,6 +23,7 @@ export const AppNavigator = createStackNavigator(
         borderBottomColor: SWS_GREEN,
         borderBottomWidth: 1,
         fontFamily: 'Poppins-bold',
+        paddingBottom: 16,
       },
       headerTintColor: SWS_GREEN,
     },

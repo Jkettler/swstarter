@@ -15,7 +15,7 @@ test('builds search url for api', () => {
   expect(searchUrlBuilder('r2', 'people')).toBe(`${BASE_URL}people/?search=r2`);
 });
 
-test('copies unordered nest objects into ordered/filtered array', () => {
+test('copies unordered nested objects into ordered/filtered array', () => {
   const obj = {cat: 'mew', dog: 'woof', fox: '???', sleepy_human: 'zzZzz'};
   const scheme = ['sleepy_human', 'dog', 'fox'];
   const expected = [{'Sleepy Human': 'zzZzz'}, {Dog: 'woof'}, {Fox: '???'}];

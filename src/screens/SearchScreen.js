@@ -3,6 +3,7 @@ import {SafeAreaView, TextInput, Text, View, StyleSheet} from 'react-native';
 import {searchUrlBuilder} from '../util/helpers';
 import {SwsButton} from '../components/sws-button';
 import {SEARCH_OPTIONS} from '../constants';
+import {RadioButtonGroup} from '../components/radio-button-group';
 
 export const SearchScreen = props => {
   const [searchText, setSearchText] = useState('');
@@ -21,7 +22,12 @@ export const SearchScreen = props => {
   return (
     <SafeAreaView style={styles.searchScreen}>
       <View style={styles.controls}>
-        <Text style={styles.prompt}>What are you searching for?</Text>
+        <Text style={styles.prompt}>What are you searching for ?</Text>
+        <RadioButtonGroup
+          selected={selection}
+          options={SEARCH_OPTIONS}
+          onPress={setSelection}
+        />
         <TextInput
           style={styles.searchBox}
           value={searchText}
@@ -31,7 +37,11 @@ export const SearchScreen = props => {
         />
       </View>
       <View style={styles.bottomButton}>
-        <SwsButton onPress={e => onSearchSubmit(e)} title={'SEARCH'} />
+        <SwsButton
+          disabled={!searchText.length}
+          onPress={e => onSearchSubmit(e)}
+          title={'SEARCH'}
+        />
       </View>
     </SafeAreaView>
   );
@@ -39,20 +49,24 @@ export const SearchScreen = props => {
 
 const styles = StyleSheet.create({
   searchScreen: {
+    flex: 1,
     alignContent: 'center',
     justifyContent: 'space-between',
-    marginRight: 30,
-    marginLeft: 30,
+    margin: 30,
   },
   controls: {
-    justifyContent: 'space-between',
+    flex: 0.25,
+    alignContent: 'center',
+    justifyContent: 'space-evenly',
+    marginRight: 30,
   },
   bottomButton: {
-    justifyContent: 'space-evenly',
+    marginBottom: 10,
   },
   searchBox: {
     height: 36,
     width: 260,
+    paddingLeft: 10,
     borderColor: 'lightgrey',
     borderWidth: 1,
     borderRadius: 3,

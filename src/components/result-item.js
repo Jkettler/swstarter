@@ -1,25 +1,29 @@
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
-  Button,
-  StatusBar,
 } from 'react-native';
 import {SwsButton} from './sws-button';
+import {Divider} from './divider';
 
 export const ResultItem = ({item, onItemVisit}) => {
   return (
     <View style={styles.item}>
-      <Text style={styles.name}>{item.name}</Text>
+      <Text style={styles.name}>{item.name || item.title}</Text>
       <SwsButton title="SEE DETAILS" onPress={() => onItemVisit(item)} />
+      <Divider />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  item: {},
-  name: {},
+  name: {
+    fontSize: 14,
+    fontFamily: 'Montserrat-bold',
+    marginBottom: 15,
+  },
+  item: {
+    justifyContent: 'space-between',
+  },
 });
