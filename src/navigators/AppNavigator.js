@@ -15,7 +15,7 @@ export const AppNavigator = createStackNavigator(
     defaultNavigationOptions: {
       title: 'SWStarter',
       headerLeftContainerStyle: {
-        marginLeft: 30,
+        marginLeft: 20,
       },
       headerBackTitle: null,
       headerStyle: {
